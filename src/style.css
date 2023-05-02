@@ -1,3 +1,59 @@
-.hello {
-  color: red;
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+}
+
+.to-do-list-container {
+  width: 80%;
+  margin-top: 3em;
+  background-color: #fdfdfd;
+  box-shadow: -6px 10px 52px 1px rgba(179,179,179,1);
+}
+
+.row-list {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1em;
+  border-bottom: 1px solid #dbdbdb;
+  height: 2.5em;
+}
+
+.form {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.form input {
+  border: none;
+  font-style: italic;
+  width: 90%;
+}
+
+.form input:focus {
+  outline: none;
+}
+
+.list-task {
+  justify-content: left;
+  gap: 0.7em;
+}
+
+.task-content:focus {
+  outline: none;
+}
+
+@media (min-width: 768px) {
+  .to-do-list-container {
+    max-width: 45em;
+  }
 }
