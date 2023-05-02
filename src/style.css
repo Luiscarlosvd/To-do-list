@@ -11,6 +11,12 @@ body {
   justify-content: center;
 }
 
+.hoverline {
+  text-decoration: line-through;
+  font-style: italic;
+  color: #707070;
+}
+
 .to-do-list-container h1 {
   display: none;
 }

@@ -29,7 +29,7 @@ let list = [
     },
     {
         description: 'Wash my car',
-        completed: true,
+        completed: false,
         index: 2,
     },
 ]
@@ -37,6 +37,7 @@ let list = [
 const render = () => {
     const listContainer = document.querySelector('.check-list')
     for(let i = 0; i < list.length; i++){
+        
         const listElement = document.createElement('li');
 
         listElement.classList.add('list-task');
@@ -52,6 +53,16 @@ const render = () => {
         descriptionTask.contentEditable = 'true';
         descriptionTask.textContent = `${list[i].description}`
         listElement.appendChild(descriptionTask);
+
+        inputList.addEventListener('click', () => {
+            if(inputList.checked){
+              descriptionTask.classList.add('hoverline');
+              list[i].completed = true;
+            } else {
+              descriptionTask.classList.remove('hoverline');
+              list[i].completed = false;
+            }
+        });
 
         const buttonTask = document.createElement('button');
         buttonTask.classList.add('button-more');
@@ -69,5 +80,4 @@ const render = () => {
 }
 
 document.addEventListener('DOMContentLoaded', render);
-
 
