@@ -7,14 +7,26 @@
 <script defer src="main.js"></script></head>
 <body>
     <div class="to-do-list-container">
-        <div>
+        <div class="row-list">
             <p>Today's To Do</p>
         </div>
-        <div>
-            <form id="addBook">
-                <input type="text" id="title" name="title" placeholder="Title" required> <br>
-                <button type="submit" class="button-add">Add</button>
+        <div class="row-list">
+            <form id="add-task" class="form">
+                <input type="text" id="title" name="title" placeholder="Add to your list..." required> <br>
+                <button type="submit" class="button-add"></button>
             </form>
+        </div>
+        <ul>
+            <form>
+                <li class="row-list list-task">
+                    <input type="checkbox" id="task">
+                    <Label class="task-content" contenteditable="true">Clean the dishes</Label>
+                    <button type="button"><img src="./dist/24182a01ab066277f0df.png" alt="task button"></button>
+                </li>
+            </form>
+        </ul>
+        <div class="row-list button-clear-task">
+            <button type="reset" id="button-clear">Clear all completed</button>
         </div>
     </div>
 </body>

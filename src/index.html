@@ -7,23 +7,18 @@
 </head>
 <body>
     <div class="to-do-list-container">
-        <div class="row-list">
+        <h1>To do list</h1>
+        <div class="row-list" id="top">
             <p>Today's To Do</p>
         </div>
         <div class="row-list">
             <form id="add-task" class="form">
-                <input type="text" id="title" name="title" placeholder="Add to your list..." required> <br>
-                <button type="submit" class="button-add"></button>
+                <input type="text" id="title" name="title" placeholder="Add to your list..." required>
             </form>
         </div>
+
         <ul>
-            <form>
-                <li class="row-list list-task">
-                    <input type="checkbox" id="task">
-                    <Label class="task-content" contenteditable="true">Clean the dishes</Label>
-                    <button type="button"><img src="./img/icons8-menú-2-48.png" alt="task button"></button>
-                </li>
-            </form>
+            <form class="check-list"></form>
         </ul>
         <div class="row-list button-clear-task">
             <button type="reset" id="button-clear">Clear all completed</button>
