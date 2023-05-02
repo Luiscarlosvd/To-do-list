@@ -1,3 +1,118 @@
-.hello {
-    color: red;
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+}
+
+.hoverline {
+  text-decoration: line-through;
+  font-style: italic;
+  color: #707070;
+}
+
+.to-do-list-container h1 {
+  display: none;
+}
+
+.button-sync {
+  background-color: unset;
+  border: none;
+  cursor: pointer;
+  margin-top: 2px;
+}
+
+.to-do-list-container {
+  width: 80%;
+  margin-top: 3em;
+  background-color: #fdfdfd;
+  box-shadow: -6px 10px 52px 1px rgba(179, 179, 179, 1);
+}
+
+.row-list {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.4em 1em;
+  border-bottom: 1px solid #dbdbdb;
+  min-height: 3.2em;
+}
+
+.form {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.img-add {
+  height: 0.9em;
+  margin-right: 0.3em;
+  margin-top: 0.1em;
+}
+
+.form input {
+  border: none;
+  font-style: italic;
+  width: 90%;
+}
+
+.form input:focus {
+  outline: none;
+}
+
+.list-task {
+  display: grid;
+  grid-template-columns: auto auto 1fr;
+  list-style: none;
+  align-items: center;
+  padding: 0.6em 1em;
+  column-gap: 1em;
+  border-bottom: 1px solid #dbdbdb;
+  height: auto;
+}
+
+.task-content:focus {
+  outline: none;
+}
+
+.button-more {
+  background-color: unset;
+  border: none;
+  cursor: pointer;
+  grid-column: 4 / span 1;
+  margin-top: 2px;
+}
+
+.image-button-more {
+  max-height: 2em;
+}
+
+.button-clear-task {
+  justify-content: center;
+  background-color: #f5f5f5;
+}
+
+#button-clear {
+  border: none;
+  color: #707070;
+  background-color: unset;
+  cursor: pointer;
+  width: 100%;
+  height: inherit;
+}
+
+#button-clear:hover {
+  text-decoration: underline;
+}
+
+@media (min-width: 768px) {
+  .to-do-list-container {
+    max-width: 45em;
   }
+}
