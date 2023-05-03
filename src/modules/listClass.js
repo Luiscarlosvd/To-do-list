@@ -1,5 +1,6 @@
 import { forEach } from 'lodash';
 import Icon from '../img/icons8-menú-2-50.png';
+import trashIcon from '../img/icons8-basura-32.png';
 
 export default class taskList {
   constructor(container) {
@@ -31,6 +32,13 @@ export default class taskList {
     })
     localStorage.setItem('localData', JSON.stringify(this.list));
   }
+
+  removeTask(index){
+    this.list = JSON.parse(localStorage.getItem('localData'));
+    this.list = this.list.filter((task) => task.index !== index);
+    localStorage.setItem('localData', JSON.stringify(this.list));
+    window.location = window.location.pathname;
+  }
   
 
   render() {
@@ -51,14 +59,32 @@ export default class taskList {
       descriptionTask.contentEditable = 'true';
       descriptionTask.textContent = `${this.list[i].description}`;
       listElement.appendChild(descriptionTask);
+
+      const buttonRemove = document.createElement('button');
+      buttonRemove.classList.add('button-more');
+      buttonRemove.style.display = 'none';
+      listElement.appendChild(buttonRemove);
+
+      const imageTrash = document.createElement('img');
+      imageTrash.src = trashIcon;
+      imageTrash.classList.add('image-button-more');
+      buttonRemove.appendChild(imageTrash);
       
-      descriptionTask.addEventListener('click', () => {
+      descriptionTask.addEventListener('focus', () => {
         listElement.classList.add('editable-task');
+        buttonTask.style.display = 'none';
+        buttonRemove.style.display = 'inherit';
       });
 
       descriptionTask.addEventListener('blur', () => {
         listElement.classList.remove('editable-task');
-        this.modifiedTask(descriptionTask.textContent, this.list[i].index);
+        buttonRemove.style.display = 'none';
+        buttonTask.style.display = 'inherit';
+        if(descriptionTask.textContent == ""){
+            this.removeTask(this.list[i].index);
+        } else {
+            this.modifiedTask(descriptionTask.textContent, this.list[i].index);
+        }
         descriptionTask.contentEditable = 'true';
       });
 
@@ -67,6 +93,12 @@ export default class taskList {
             descriptionTask.contentEditable = 'false';
         }
       })
+
+      buttonRemove.addEventListener('click', () => {
+        if(descriptionTask.textContent == ""){
+          this.removeTask(this.list[i].index);
+        }
+      });
 
       inputList.addEventListener('click', () => {
         if (inputList.checked) {
@@ -97,7 +129,7 @@ export default class taskList {
 
       this.container.appendChild(listElement);
     }
-    
+
     localStorage.setItem('localData', JSON.stringify(this.list));
   }
 

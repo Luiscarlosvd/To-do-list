@@ -37,15 +37,7 @@ formAddTask.addEventListener('submit', (e) => {
   e.preventDefault();
   const task = new Task(title.value);
   taskList.addTask(task);
-  taskList.render();
 });
-
-// listContainer.addEventListener('click', (e) => {
-//     if (e.target.classList.contains('task-content')) {
-//       e.target.parentElement.classList.toggle('editable-task');
-//   }
-// });
-
 
 document.addEventListener('DOMContentLoaded', taskList.render());
 

@@ -78,7 +78,7 @@ body {
   padding: 0.6em 1em;
   column-gap: 1em;
   border-bottom: 1px solid #dbdbdb;
-  height: auto;
+  height: 3.2em;
 }
 
 .task-content:focus {
@@ -90,11 +90,11 @@ body {
   border: none;
   cursor: pointer;
   grid-column: 4 / span 1;
-  margin-top: 2px;
+  margin-top: 4px;
 }
 
 .image-button-more {
-  max-height: 2em;
+  height: 2em;
 }
 
 .button-clear-task {
