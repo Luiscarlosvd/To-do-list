@@ -7,7 +7,7 @@
 # 📗 Table of Contents
 
 - [📗 Table of Contents](#-table-of-contents)
-- [📖 Monsters of Code 2023](#-monsters-of-code-2023)
+- [📖 To Do List](#-to-do-list)
   - [🛠 Built With ](#-built-with-)
     - [Tech Stack ](#tech-stack-)
     - [Key Features ](#key-features-)
@@ -19,7 +19,7 @@
     - [Usage](#usage)
     - [Run tests](#run-tests)
     - [Deployment](#deployment)
-  - [👥 Authors ](#-authors-)
+  - [👥 Author ](#-author-)
   - [🔭 Future Features ](#-future-features-)
   - [Walkthrough ](#walkthrough-)
   - [🤝 Contributing ](#-contributing-)
@@ -143,7 +143,7 @@ Example command:
 ## 🔭 Future Features <a name="future-features"></a>
 
 - **More styling 😁**
-- **Add Add and Remove functions👌**
+- **Add dragging functions👌**
 - **More Functionalities 😎**
 
 ## Walkthrough <a name="walkthrough"></a>
