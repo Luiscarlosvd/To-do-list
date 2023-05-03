@@ -5,7 +5,6 @@ import arrowIcon from './img/icons8-abajo-izquierda-24.png';
 import List from './modules/listClass.js';
 import Task from './modules/taskClass.js';
 
-
 /* Sync Button */
 
 const topToDoList = document.querySelector('#top');
@@ -40,4 +39,3 @@ formAddTask.addEventListener('submit', (e) => {
 });
 
 document.addEventListener('DOMContentLoaded', taskList.render());
-

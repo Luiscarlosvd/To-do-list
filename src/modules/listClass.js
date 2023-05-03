@@ -1,4 +1,4 @@
-import { forEach } from 'lodash';
+import { forEach } from 'lodash'; // eslint-disable-line
 import Icon from '../img/icons8-menú-2-50.png';
 import trashIcon from '../img/icons8-basura-32.png';
 
@@ -22,24 +22,22 @@ export default class taskList {
     }
   }
 
-
-  modifiedTask(newDescription, index){
+  modifiedTask(newDescription, index) {
     this.list = JSON.parse(localStorage.getItem('localData'));
     this.list.forEach((task) => {
-        if(task.index == index){
-            task.description = newDescription;
-        }
-    })
+      if (task.index === index) {
+        task.description = newDescription;
+      }
+    });
     localStorage.setItem('localData', JSON.stringify(this.list));
   }
 
-  removeTask(index){
+  removeTask(index) {
     this.list = JSON.parse(localStorage.getItem('localData'));
     this.list = this.list.filter((task) => task.index !== index);
     localStorage.setItem('localData', JSON.stringify(this.list));
     window.location = window.location.pathname;
   }
-  
 
   render() {
     this.list = JSON.parse(localStorage.getItem('localData'));
@@ -69,7 +67,16 @@ export default class taskList {
       imageTrash.src = trashIcon;
       imageTrash.classList.add('image-button-more');
       buttonRemove.appendChild(imageTrash);
-      
+
+      const buttonTask = document.createElement('button');
+      buttonTask.classList.add('button-more');
+      listElement.appendChild(buttonTask);
+
+      const buttonImage = document.createElement('img');
+      buttonImage.src = Icon;
+      buttonImage.classList.add('image-button-more');
+      buttonTask.appendChild(buttonImage);
+
       descriptionTask.addEventListener('focus', () => {
         listElement.classList.add('editable-task');
         buttonTask.style.display = 'none';
@@ -80,22 +87,22 @@ export default class taskList {
         listElement.classList.remove('editable-task');
         buttonRemove.style.display = 'none';
         buttonTask.style.display = 'inherit';
-        if(descriptionTask.textContent == ""){
-            this.removeTask(this.list[i].index);
+        if (descriptionTask.textContent === '') {
+          this.removeTask(this.list[i].index);
         } else {
-            this.modifiedTask(descriptionTask.textContent, this.list[i].index);
+          this.modifiedTask(descriptionTask.textContent, this.list[i].index);
         }
         descriptionTask.contentEditable = 'true';
       });
 
       descriptionTask.addEventListener('keypress', (e) => {
         if (e.key === 'Enter') {
-            descriptionTask.contentEditable = 'false';
+          descriptionTask.contentEditable = 'false';
         }
-      })
+      });
 
       buttonRemove.addEventListener('click', () => {
-        if(descriptionTask.textContent == ""){
+        if (descriptionTask.textContent === '') {
           this.removeTask(this.list[i].index);
         }
       });
@@ -116,15 +123,6 @@ export default class taskList {
         descriptionTask.classList.add('hoverline');
       }
 
-      const buttonTask = document.createElement('button');
-      buttonTask.classList.add('button-more');
-      listElement.appendChild(buttonTask);
-
-      const buttonImage = document.createElement('img');
-      buttonImage.src = Icon;
-      buttonImage.classList.add('image-button-more');
-      buttonTask.appendChild(buttonImage);
-
       this.list[i].index = i + 1;
 
       this.container.appendChild(listElement);
@@ -132,5 +130,4 @@ export default class taskList {
 
     localStorage.setItem('localData', JSON.stringify(this.list));
   }
-
 }
