@@ -93,6 +93,14 @@ body {
   margin-top: 4px;
 }
 
+.button-remove {
+  background-color: unset;
+  border: none;
+  cursor: pointer;
+  grid-column: 4 / span 1;
+  margin-top: 4px;
+}
+
 .image-button-more {
   height: 2em;
 }
