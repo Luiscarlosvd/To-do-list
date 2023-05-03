@@ -11,6 +11,10 @@ body {
   justify-content: center;
 }
 
+.editable-task {
+  background-color: antiquewhite;
+}
+
 .hoverline {
   text-decoration: line-through;
   font-style: italic;

@@ -1,3 +1,4 @@
+import { forEach } from 'lodash';
 import Icon from '../img/icons8-menú-2-50.png';
 
 export default class taskList {
@@ -20,6 +21,18 @@ export default class taskList {
     }
   }
 
+
+  modifiedTask(newDescription, index){
+    this.list = JSON.parse(localStorage.getItem('localData'));
+    this.list.forEach((task) => {
+        if(task.index == index){
+            task.description = newDescription;
+        }
+    })
+    localStorage.setItem('localData', JSON.stringify(this.list));
+  }
+  
+
   render() {
     this.list = JSON.parse(localStorage.getItem('localData'));
     for (let i = 0; i < this.list.length; i += 1) {
@@ -38,6 +51,22 @@ export default class taskList {
       descriptionTask.contentEditable = 'true';
       descriptionTask.textContent = `${this.list[i].description}`;
       listElement.appendChild(descriptionTask);
+      
+      descriptionTask.addEventListener('click', () => {
+        listElement.classList.add('editable-task');
+      });
+
+      descriptionTask.addEventListener('blur', () => {
+        listElement.classList.remove('editable-task');
+        this.modifiedTask(descriptionTask.textContent, this.list[i].index);
+        descriptionTask.contentEditable = 'true';
+      });
+
+      descriptionTask.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') {
+            descriptionTask.contentEditable = 'false';
+        }
+      })
 
       inputList.addEventListener('click', () => {
         if (inputList.checked) {
@@ -68,6 +97,8 @@ export default class taskList {
 
       this.container.appendChild(listElement);
     }
+    
     localStorage.setItem('localData', JSON.stringify(this.list));
   }
+
 }
