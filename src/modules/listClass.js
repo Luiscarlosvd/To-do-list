@@ -51,6 +51,13 @@ export default class taskList {
     localStorage.setItem('localData', JSON.stringify(this.list));
   }
 
+  clearCompletedTask() {
+    this.list = JSON.parse(localStorage.getItem('localData'));
+    this.list = this.list.filter((task) => task.completed === false);
+    localStorage.setItem('localData', JSON.stringify(this.list));
+    window.location = window.location.pathname;
+  }
+
   render() {
     if (localStorage.getItem('localData') === null) {
       localStorage.setItem('localData', JSON.stringify([]));
