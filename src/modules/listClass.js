@@ -58,6 +58,26 @@ export default class taskList {
     window.location = window.location.pathname;
   }
 
+  dragStart() {
+    console.log('event: dragstart')
+  }
+
+  dragEnter() {
+    console.log('event: dragenter')
+  }
+
+  dragLeave() {
+    console.log('event: dragLeave')
+  }
+
+  dragOver() {
+    console.log('event: dragover')
+  }
+
+  dragDrop() {
+    console.log('event: drop')
+  }
+
   render() {
     if (localStorage.getItem('localData') === null) {
       localStorage.setItem('localData', JSON.stringify([]));
@@ -65,8 +85,9 @@ export default class taskList {
     this.list = JSON.parse(localStorage.getItem('localData'));
     for (let i = 0; i < this.list.length; i += 1) {
       const listElement = document.createElement('li');
-
       listElement.classList.add('list-task');
+      listElement.draggable = 'true';
+      listElement.classList.add('draggable');
 
       const inputList = document.createElement('input');
       inputList.type = 'checkbox';
@@ -82,10 +103,12 @@ export default class taskList {
 
       const buttonTask = document.createElement('button');
       buttonTask.classList.add('button-more');
+      buttonTask.draggable = 'false';
       listElement.appendChild(buttonTask);
 
       const buttonImage = document.createElement('img');
       buttonImage.src = Icon;
+      buttonImage.draggable = 'false';
       buttonImage.classList.add('image-button-more');
       buttonTask.appendChild(buttonImage);
 
@@ -145,9 +168,21 @@ export default class taskList {
 
       this.list[i].index = i + 1;
 
-      this.container.appendChild(listElement);
-    }
+      listElement.addEventListener('dragstart', () => {
+        this.dragStart();
+      })
 
+      listElement.addEventListener('drop', () => {
+        this.dragDrop()
+      });
+
+        listElement.addEventListener('dragover', () => {
+            this.dragOver();
+        });
+    
+      this.container.appendChild(listElement);
+
+    }    
     localStorage.setItem('localData', JSON.stringify(this.list));
   }
 }

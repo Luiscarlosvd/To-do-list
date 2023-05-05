@@ -43,3 +43,4 @@ const clearButton = document.getElementById('button-clear');
 clearButton.addEventListener('click', taskList.clearCompletedTask);
 
 document.addEventListener('DOMContentLoaded', taskList.render());
+
