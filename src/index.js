@@ -38,4 +38,8 @@ formAddTask.addEventListener('submit', (e) => {
   taskList.addTask(task);
 });
 
+const clearButton = document.getElementById('button-clear');
+
+clearButton.addEventListener('click', taskList.clearCompletedTask);
+
 document.addEventListener('DOMContentLoaded', taskList.render());

@@ -39,6 +39,25 @@ export default class taskList {
     window.location = window.location.pathname;
   }
 
+  completedTask(index) {
+    this.list = JSON.parse(localStorage.getItem('localData'));
+    this.list.forEach((task) => {
+      if (task.index === index && task.completed === false) {
+        task.completed = true;
+      } else if (task.index === index && task.completed) {
+        task.completed = false;
+      }
+    });
+    localStorage.setItem('localData', JSON.stringify(this.list));
+  }
+
+  clearCompletedTask() {
+    this.list = JSON.parse(localStorage.getItem('localData'));
+    this.list = this.list.filter((task) => task.completed === false);
+    localStorage.setItem('localData', JSON.stringify(this.list));
+    window.location = window.location.pathname;
+  }
+
   render() {
     if (localStorage.getItem('localData') === null) {
       localStorage.setItem('localData', JSON.stringify([]));
@@ -115,16 +134,9 @@ export default class taskList {
         }
       });
 
-      inputList.addEventListener('click', () => {
-        if (inputList.checked) {
-          descriptionTask.classList.add('hoverline');
-          this.list[i].completed = true;
-          localStorage.setItem('localData', JSON.stringify(this.list));
-        } else {
-          descriptionTask.classList.remove('hoverline');
-          this.list[i].completed = false;
-          localStorage.setItem('localData', JSON.stringify(this.list));
-        }
+      inputList.addEventListener('change', () => {
+        descriptionTask.classList.toggle('hoverline');
+        this.completedTask(this.list[i].index);
       });
 
       if (this.list[i].completed) {
