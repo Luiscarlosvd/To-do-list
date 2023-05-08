@@ -28,18 +28,23 @@ buttonAdd.appendChild(imgAdd);
 formAddTask.appendChild(buttonAdd);
 
 const title = document.getElementById('title');
-const listContainer = document.querySelector('.check-list');
+export const container = document.querySelector('.check-list');
 
-const taskList = new List(listContainer);
+const taskList = new List();
+
+taskList.render();
 
 formAddTask.addEventListener('submit', (e) => {
   e.preventDefault();
   const task = new Task(title.value);
   taskList.addTask(task);
+  taskList.render();
+  title.value = '';
 });
 
 const clearButton = document.getElementById('button-clear');
 
-clearButton.addEventListener('click', taskList.clearCompletedTask);
-
-document.addEventListener('DOMContentLoaded', taskList.render());
+clearButton.addEventListener('click', () => {
+  taskList.clearCompletedTask();
+  taskList.render();
+});

@@ -1,29 +1,18 @@
-import { forEach } from 'lodash'; // eslint-disable-line
 import Icon from '../img/icons8-menú-2-50.png';
 import trashIcon from '../img/icons8-basura-32.png';
+import {container} from '../index.js';
 
 export default class taskList {
   constructor(container) {
     this.list = [];
-    this.container = container;
   }
 
   addTask(task) {
-    if (localStorage.getItem('localData') === null) {
-      localStorage.setItem('localData', JSON.stringify([]));
-      this.list.push(task);
-      localStorage.setItem('localData', JSON.stringify(this.list));
-      window.location = window.location.pathname;
-    } else {
-      this.list = JSON.parse(localStorage.getItem('localData'));
-      this.list.push(task);
-      localStorage.setItem('localData', JSON.stringify(this.list));
-      window.location = window.location.pathname;
-    }
+    this.list.push(task);
+    localStorage.setItem('localData', JSON.stringify(this.list));
   }
 
   modifiedTask(newDescription, index) {
-    this.list = JSON.parse(localStorage.getItem('localData'));
     this.list.forEach((task) => {
       if (task.index === index) {
         task.description = newDescription;
@@ -33,14 +22,12 @@ export default class taskList {
   }
 
   removeTask(index) {
-    this.list = JSON.parse(localStorage.getItem('localData'));
     this.list = this.list.filter((task) => task.index !== index);
     localStorage.setItem('localData', JSON.stringify(this.list));
-    window.location = window.location.pathname;
+    this.render();
   }
 
   completedTask(index) {
-    this.list = JSON.parse(localStorage.getItem('localData'));
     this.list.forEach((task) => {
       if (task.index === index && task.completed === false) {
         task.completed = true;
@@ -49,13 +36,12 @@ export default class taskList {
       }
     });
     localStorage.setItem('localData', JSON.stringify(this.list));
+    this.render();
   }
 
   clearCompletedTask() {
-    this.list = JSON.parse(localStorage.getItem('localData'));
     this.list = this.list.filter((task) => task.completed === false);
     localStorage.setItem('localData', JSON.stringify(this.list));
-    window.location = window.location.pathname;
   }
 
   render() {
@@ -63,6 +49,7 @@ export default class taskList {
       localStorage.setItem('localData', JSON.stringify([]));
     }
     this.list = JSON.parse(localStorage.getItem('localData'));
+    container.innerHTML = '';
     for (let i = 0; i < this.list.length; i += 1) {
       const listElement = document.createElement('li');
 
@@ -145,7 +132,7 @@ export default class taskList {
 
       this.list[i].index = i + 1;
 
-      this.container.appendChild(listElement);
+      container.appendChild(listElement);
     }
 
     localStorage.setItem('localData', JSON.stringify(this.list));
