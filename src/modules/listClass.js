@@ -1,9 +1,9 @@
 import Icon from '../img/icons8-menú-2-50.png';
 import trashIcon from '../img/icons8-basura-32.png';
-import {container} from '../index.js';
+import container from '../index.js'; // eslint-disable-line
 
 export default class taskList {
-  constructor(container) {
+  constructor() {
     this.list = [];
   }
 
@@ -40,6 +40,7 @@ export default class taskList {
   }
 
   clearCompletedTask() {
+    this.list = JSON.parse(localStorage.getItem('localData'));
     this.list = this.list.filter((task) => task.completed === false);
     localStorage.setItem('localData', JSON.stringify(this.list));
   }

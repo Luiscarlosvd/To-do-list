@@ -1,8 +1,7 @@
-import _ from 'lodash'; // eslint-disable-line
 import './style.css';
 import refreshIcon from './img/icons8-sincronizar-24.png';
 import arrowIcon from './img/icons8-abajo-izquierda-24.png';
-import List from './modules/listClass.js';
+import List from './modules/listClass.js'; // eslint-disable-line
 import Task from './modules/taskClass.js';
 
 /* Sync Button */
@@ -28,7 +27,9 @@ buttonAdd.appendChild(imgAdd);
 formAddTask.appendChild(buttonAdd);
 
 const title = document.getElementById('title');
-export const container = document.querySelector('.check-list');
+const container = document.querySelector('.check-list');
+
+export default container;
 
 const taskList = new List();
 
