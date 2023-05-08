@@ -68,7 +68,7 @@ In this project I am creating a to-do list for your day to day! 😎
 
 ## 🚀 Live Demo <a name="live-demo"></a>
 
-> Comming Soon...
+> You can watch the live demo [here](https://luiscarlosvd.github.io/To-do-list/)
 
 <!-- - No live demo available yet -->
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
