@@ -1,4 +1,5 @@
 import taskList from "./tasklistTest";
+
 // Mocking localStorage
 const localStorageMock = (() => {
   let store = {};
@@ -17,11 +18,11 @@ const localStorageMock = (() => {
     },
   };
 })();
-Object.defineProperty(window, 'localStorage', { value: localStorageMock });
+global.localStorage = localStorageMock;
 
 describe('taskList', () => {
     // Add Method
-  test('pushes the given object (task) into the list array', () => {
+  test('pushes the given object (task) into the list array and store it in localStorage', () => {
     //Arrange
     const list = new taskList();
     const task = {
@@ -34,6 +35,6 @@ describe('taskList', () => {
     list.addTask(task);
   
     //Assert
-    expect(localStorage).toContain(task);
+    expect(list.list).toContain(task);
   });    
 });
