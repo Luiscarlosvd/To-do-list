@@ -1,12 +1,10 @@
-import taskList from "./tasklistTest";
+import TaskList from './tasklistTest.js';
 
 // Mocking localStorage
 const localStorageMock = (() => {
   let store = {};
   return {
-    getItem: (key) => {
-      return store[key] || null;
-    },
+    getItem: (key) => store[key] || null,
     setItem: (key, value) => {
       store[key] = value.toString();
     },
@@ -21,46 +19,44 @@ const localStorageMock = (() => {
 global.localStorage = localStorageMock;
 
 describe('taskList', () => {
-    // Add Method
+  // Add Method
   test('pushes the given object (task) into the list array and store it in localStorage', () => {
-    //Arrange
-    const list = new taskList();
+    // Arrange
+    const list = new TaskList();
     const task = {
-        description: "Clean my bedroom", 
-        completed: false,
-        index: 1
-        }
-  
-    //Act
-    list.addTask(task);
-  
-    //Assert
-    expect(list.list).toContain(task);
+      description: 'Clean my bedroom',
+      completed: false,
+      index: 1,
+    };
 
-    
+    // Act
+    list.addTask(task);
+
+    // Assert
+    expect(list.list).toContain(task);
   });
 
-  //remove method
+  // remove method
   test('deletes an object from the tasklist with a given index', () => {
-    //Arrange
-    const list = new taskList();
+    // Arrange
+    const list = new TaskList();
     const task = {
-      description: "take out the clothes", 
+      description: 'take out the clothes',
       completed: false,
-      index: 1
+      index: 1,
     };
     const task2 = {
-      description: "wash my car", 
+      description: 'wash my car',
       completed: false,
-      index: 2
+      index: 2,
     };
     list.addTask(task);
     list.addTask(task2);
-  
-    //Act
+
+    // Act
     list.removeTask(1);
-  
-    //Assert
+
+    // Assert
     expect(list.list).not.toContain(task);
-  });  
+  });
 });
