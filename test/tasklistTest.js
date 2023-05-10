@@ -20,7 +20,6 @@ export default class taskList {
   removeTask(index) {
     this.list = this.list.filter((task) => task.index !== index);
     localStorage.setItem("localData", JSON.stringify(this.list));
-    // this.render();
   }
 
   completedTask(index) {
