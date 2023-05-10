@@ -36,5 +36,26 @@ describe('taskList', () => {
   
     //Assert
     expect(list.list).toContain(task);
-  });    
+
+    
+  });
+
+  test('deletes an object from the tasklist with a given index', () => {
+    //Arrange
+    const list = new taskList();
+    const task = {
+        description: "take out the clothes", 
+        completed: false,
+        index: 1
+        }
+  
+    //Act
+    list.addTask(task);
+    list.removeTask(1);
+  
+    //Assert
+    expect(list.list).not.toContain(task);
+
+    
+  });  
 });
