@@ -31,7 +31,6 @@ export default class taskList {
       }
     });
     localStorage.setItem('localData', JSON.stringify(this.list));
-    this.render();
   }
 
   clearCompletedTask() {

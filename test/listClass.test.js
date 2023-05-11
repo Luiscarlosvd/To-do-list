@@ -97,4 +97,33 @@ describe('taskList', () => {
     expect(list.list).not.toContain(task2);
     expect(list.list).not.toContain(task4);
   });
+
+  // change completed value
+  test('returns filtered tasklist with all objects that were not completed', () => {
+    // Arrange
+    const list = new TaskList();
+    const task = {
+      description: 'Clean my bedroom',
+      completed: false,
+      index: 1,
+    };
+    const task2 = {
+      description: 'Wash the dishes',
+      completed: true,
+      index: 2,
+    };
+
+    list.addTask(task);
+    list.addTask(task2);
+
+    // Act
+    list.completedTask(1);
+    list.completedTask(2);
+
+    // Assert
+    expect(list.list[0].completed).toBeTruthy();
+    expect(list.list[1].completed).toBeFalsy();
+  });
+
+  
 });
