@@ -59,4 +59,94 @@ describe('taskList', () => {
     // Assert
     expect(list.list).not.toContain(task);
   });
+
+  // Clear Completed Task
+  test('returns filtered tasklist with all objects that were not completed', () => {
+    // Arrange
+    const list = new TaskList();
+    const task = {
+      description: 'Clean my bedroom',
+      completed: false,
+      index: 1,
+    };
+    const task2 = {
+      description: 'Wash the dishes',
+      completed: true,
+      index: 2,
+    };
+    const task3 = {
+      description: 'Play videogames',
+      completed: false,
+      index: 3,
+    };
+    const task4 = {
+      description: 'Seek whales',
+      completed: true,
+      index: 4,
+    };
+    list.addTask(task);
+    list.addTask(task2);
+    list.addTask(task3);
+    list.addTask(task4);
+
+    // Act
+    list.clearCompletedTask();
+
+    // Assert
+    expect(list.list).not.toContain(task2);
+    expect(list.list).not.toContain(task4);
+  });
+
+  // change completed value
+  test('returns filtered tasklist with all objects that were not completed', () => {
+    // Arrange
+    const list = new TaskList();
+    const task = {
+      description: 'Clean my bedroom',
+      completed: false,
+      index: 1,
+    };
+    const task2 = {
+      description: 'Wash the dishes',
+      completed: true,
+      index: 2,
+    };
+
+    list.addTask(task);
+    list.addTask(task2);
+
+    // Act
+    list.completedTask(1);
+    list.completedTask(2);
+
+    // Assert
+    expect(list.list[0].completed).toBeTruthy();
+    expect(list.list[1].completed).toBeFalsy();
+  });
+
+  // Modify Task
+  test('returns the selected object with a new description', () => {
+    // Arrange
+    const list = new TaskList();
+    const task = {
+      description: 'Clean my bedroom',
+      completed: false,
+      index: 1,
+    };
+    const task2 = {
+      description: 'Wash the dishes',
+      completed: true,
+      index: 2,
+    };
+    list.addTask(task);
+    list.addTask(task2);
+
+    // Act
+    list.modifiedTask('Play video games', 1);
+    list.modifiedTask('Destroy the world', 2);
+
+    // Assert
+    expect(list.list[0].description).toBe('Play video games');
+    expect(list.list[1].description).toBe('Destroy the world');
+  });
 });
