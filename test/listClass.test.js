@@ -89,7 +89,6 @@ describe('taskList', () => {
     list.addTask(task3);
     list.addTask(task4);
 
-
     // Act
     list.clearCompletedTask();
 
@@ -125,5 +124,29 @@ describe('taskList', () => {
     expect(list.list[1].completed).toBeFalsy();
   });
 
-  
+  // Modify Task
+  test('returns the selected object with a new description', () => {
+    // Arrange
+    const list = new TaskList();
+    const task = {
+      description: 'Clean my bedroom',
+      completed: false,
+      index: 1,
+    };
+    const task2 = {
+      description: 'Wash the dishes',
+      completed: true,
+      index: 2,
+    };
+    list.addTask(task);
+    list.addTask(task2);
+
+    // Act
+    list.modifiedTask('Play video games', 1);
+    list.modifiedTask('Destroy the world', 2);
+
+    // Assert
+    expect(list.list[0].description).toBe('Play video games');
+    expect(list.list[1].description).toBe('Destroy the world');
+  });
 });
